@@ -1,0 +1,74 @@
+<div class="wrapper" [dir]="options.direction">
+    <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background"></div>
+    </div>
+    <div class="main-panel">
+        <div class="main-content">
+            <section id="basic-form-layouts">
+                <div class="row text-left">
+                    <div class="col-sm-12">
+                        <div class="content-header">Set Password</div>
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="px-3">
+                                    <form [formGroup]="ResetForm"  novalidate>
+                                        <div class="form-body">
+                                            <h4 class="form-section"><i class="ft-user"></i> Password Info</h4>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <input type="password" placeholder="Enter password" class="form-control" formControlName="password" required password>
+                                                        <span class="form-text text-muted danger"
+                                                            *ngIf="ResetForm.get('password').errors && (ResetForm.get('password').touched || ResetForm.get('password').dirty)">
+                                                            <span *ngIf="ResetForm.get('password').errors.required">Password is required</span>
+                                                            <span *ngIf="ResetForm.get('password').errors.minLength">Password must be at least 10 characters long</span>
+                                                            <span *ngIf="ResetForm.get('password').errors.pattern">Your password must contain at least 10 characters, one uppercase, one lowercase, and one number</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">Confirm Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <input type="password" placeholder="Enter confirm password" class="form-control" formControlName="cpassword" required cpassword>
+                                                        <span class="form-text text-muted danger"
+                                                            *ngIf="ResetForm.get('cpassword').errors && (ResetForm.get('cpassword').touched || ResetForm.get('cpassword').dirty)">
+                                                            <span *ngIf="ResetForm.get('cpassword').errors.required">Confirm password is required</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+            
+                                        <div class="form-actions center">
+                                            <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="Gotolist()">
+                                                <i class="ft-x"></i> Cancel
+                                            </button>
+                                            <button type="submit" class="btn btn-raised btn-raised btn-primary" (click)="resetpassword()"> <i class="fa fa-check-square-o"></i>Submit</button>
+                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

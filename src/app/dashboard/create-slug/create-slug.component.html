@@ -1,0 +1,67 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Slug Form</div>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="px-3">
+                        <form [formGroup]="SlugForm"  novalidate>
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="ft-user"></i> Slug Info</h4>
+                                <div class=" row card-header">
+                                    <div class="col-sm-2">
+                                        <div class="content-header">     </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="content-header">English </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="content-header">Arabic</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Slug Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Enter slug name" class="form-control" formControlName="slug_name_en" required slug_name_en>
+                                            <span class="form-text text-muted danger"
+                                                *ngIf="SlugForm.get('slug_name_en').errors && (SlugForm.get('slug_name_en').touched || SlugForm.get('slug_name_en').dirty)">
+                                                <span *ngIf="SlugForm.get('slug_name_en').errors.required">Name is required</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="أدخل اسم سبيكة" class="form-control" formControlName="slug_name_ar" required slug_name_ar>
+                                            <span class="form-text text-muted danger"
+                                                *ngIf="SlugForm.get('slug_name_ar').errors && (SlugForm.get('slug_name_ar').touched || SlugForm.get('slug_name_ar').dirty)">
+                                                <span *ngIf="SlugForm.get('slug_name_ar').errors.required">Name is required</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions center">
+                                <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="Gotolist()">
+                                    <i class="ft-x"></i> Cancel
+                                </button>
+                                <button *ngIf="showbutton" type="submit" class="btn btn-raised btn-raised btn-primary" (click)="editslug()"> <i class="fa fa-check-square-o"></i>Submit</button>
+                                <button *ngIf="!showbutton" type="submit"  class="btn btn-raised btn-raised btn-primary" (click)="createslug()"> <i class="fa fa-check-square-o"></i>Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

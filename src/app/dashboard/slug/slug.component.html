@@ -1,0 +1,46 @@
+<!-- Filter Datatable Options Starts -->
+<section id="extended">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-raised mr-1 btn-primary" (click)="goToaddslug(':id')">Add Slug</button>
+                </div>
+                <div class="card-header">
+                    <h4 class="card-title">Slug List</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <table class="table table-responsive-md text-left">
+                            <thead>
+                                <tr>
+                                    <th>Sr. No.</th>
+                                    <th>Slug Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let slug of Slugdata; index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{slug.slug_name_en + " - " + slug.slug_name_ar}}</td>
+                                    <td>
+                                        <!--<a class="info p-0" data-original-title="" title="">
+                                            <i class="ft-user font-medium-3 mr-2"></i>
+                                        </a>-->
+                                        <a class="success p-0" data-original-title="" title="" (click)="goToCreateSlug(slug.id)">
+                                            <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                                        </a>
+                                        <a class="danger p-0" data-original-title="" title="" (click)="deleteSlug(slug.id)">
+                                            <i class="ft-x font-medium-3 mr-2"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Filter Datatable Options Ends -->

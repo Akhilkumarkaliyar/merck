@@ -1,0 +1,125 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Slug Data Form</div>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="px-3">
+                        <form [formGroup]="SlugdataForm"  novalidate>
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="ft-user"></i> Slug Data Info</h4>
+                                <div class=" row card-header">
+                                    <div class="col-sm-2">
+                                        <div class="content-header">     </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="content-header">English </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="content-header">Arabic</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Slug Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <select id="projectinput5" formControlName="slug_id"  class="form-control">
+                                                <option value="" selected="" disabled="">Slug List</option>
+                                                <option *ngFor="let slug of Sluglist" value="{{slug.id}}">{{slug.slug_name_en +'-'+slug.slug_name_ar }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Slug Title</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Enter slug name" class="form-control" formControlName="title_en" required title_en>
+                                            <span class="form-text text-muted danger"
+                                                *ngIf="SlugdataForm.get('title_en').errors && (SlugdataForm.get('title_en').touched || SlugdataForm.get('title_en').dirty)">
+                                                <span *ngIf="SlugdataForm.get('title_en').errors.required">Title is required</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="أدخل اسم سبيكة" class="form-control" formControlName="title_ar" required title_ar>
+                                            <span class="form-text text-muted danger"
+                                                *ngIf="SlugdataForm.get('title_ar').errors && (SlugdataForm.get('title_ar').touched || SlugdataForm.get('title_ar').dirty)">
+                                                <span *ngIf="SlugdataForm.get('title_ar').errors.required">Title is required</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Slug Description</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <!--<input type="text" placeholder="Enter slug name" class="form-control" formControlName="description_en" required description_en>-->
+                                            <ck-editor  skin="moono-lisa" language="en" formControlName="description_en" *ngIf="descen.description_en"></ck-editor>
+                                            <span class="form-text text-muted danger"
+                                                *ngIf="SlugdataForm.get('description_en').errors && (SlugdataForm.get('description_en').touched || SlugdataForm.get('description_en').dirty)">
+                                                <span *ngIf="SlugdataForm.get('description_en').errors.required">Description is required</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <!--<input type="text" placeholder="أدخل اسم سبيكة" class="form-control" formControlName="description_ar" required description_ar>-->
+                                            <ck-editor  skin="moono-lisa" language="en"  [formControl] = "SlugdataForm.controls['description_ar']" *ngIf="descen.description_ar"></ck-editor>
+                                            <span class="form-text text-muted danger"
+                                                *ngIf="SlugdataForm.get('description_ar').errors && (SlugdataForm.get('description_ar').touched || SlugdataForm.get('description_ar').dirty)">
+                                                <span *ngIf="SlugdataForm.get('description_ar').errors.required">Description is required</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Slug Image</label>
+                                        </div>
+                                    </div>
+                                   <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="file" style="display:none" (change)="filechange($event)" #fileinput placeholder="Enter slug name" class="form-control-file" image>
+                                            <button class="btn btn-raised btn-primary mr-2" (click)="fileinput.click()">select Image</button>
+                                            <span>{{name}}</span>
+                                            <span></span>
+                                            <span>{{descen.image}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions center">
+                                <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="Gotolist()">
+                                    <i class="ft-x"></i> Cancel
+                                </button>
+                                <button *ngIf="showbutton" type="submit" class="btn btn-raised btn-raised btn-primary" (click)="editslugdata()"> <i class="fa fa-check-square-o"></i>Submit</button>
+                                <button *ngIf="!showbutton" type="submit"  class="btn btn-raised btn-raised btn-primary" (click)="createslugdata()"> <i class="fa fa-check-square-o"></i>Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
